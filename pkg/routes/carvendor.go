@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"/home/gergo/Documents/go_projects/crud/pkg/controllers"
+	"github.com/XenomoprhsNightmare/car_app/pkg/controllers"
 	"github.com/gorilla/mux"
 )
 

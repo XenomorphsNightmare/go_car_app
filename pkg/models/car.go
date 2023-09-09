@@ -1,7 +1,7 @@
 package models
 
 import (
-	"/home/gergo/Documents/go_projects/crud/pkg/config"
+	"github.com/XenomoprhsNightmare/car_app/pkg/config"
 	"crud/pkg/config"
 
 	"github.com/jinzhu/gorm"
@@ -53,4 +53,9 @@ func GetCarByID(Id int64) (*Car, *gorm.DB) {
 
 }
 
-func DeleteCar(ID)
+func DeleteCar(ID int64) {
+	var car Car
+	db.Where("Id=?", ID).Delete(car)
+	return car 
+}
+
