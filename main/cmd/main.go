@@ -7,6 +7,8 @@ import (
 	"math/rand"
 	"net/http"
 	"strconv"
+	"github.com/jinzhu/gorm/dialects/sqlite"
+	"/home/gergo/Documents/go_projects/crud/pkg/routes"
 
 	"github.com/gorilla/mux"
 )
@@ -87,16 +89,8 @@ func updateMovie(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := mux.NewRouter()
 
-	movies = append(movies, Movie{ID: "11032", ISBN: "202332:030", Title: "Bottle Rocket", Director: &Director{FirstName: "Wes", LastName: "Anderson"}})
-	movies = append(movies, Movie{ID: "11048", ISBN: "202342:030", Title: "Fitzcaraldo", Director: &Director{FirstName: "Werner", LastName: "Herzog"}})
-
-	r.HandleFunc("/movies", getMovies).Methods("GET")
-	r.HandleFunc("/movies/{id}", getMovie).Methods("GET")
-	r.HandleFunc("/movies", createMovies).Methods("POST")
-	r.HandleFunc("/movies", updateMovie).Methods("PUT")
-	r.HandleFunc("/movies", deleteMovie).Methods("DELETE")
-
-	fmt.Println("Starting server at 8080")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	routes.RegisterCarRoutes(r)
+	http.Handle("/", r)
+	log.Fatal(http.ListenAndServe("localhost:8080", r))
 
 }
